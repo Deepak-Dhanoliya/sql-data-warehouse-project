@@ -1,4 +1,6 @@
+-----------------------------------------------------------
 -- DATABASE EXPLORATION
+-----------------------------------------------------------
 
 -- Explore All Objects In The Database
 SELECT * FROM INFORMATION_SCHEMA.TABLES
@@ -6,7 +8,9 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES
 -- Exolore All Columns In The Database
 SELECT * FROM INFORMATION_SCHEMA.COLUMNS
 
+-----------------------------------------------------------
 -- DIMENSTION EXPLORATION
+-----------------------------------------------------------
 
 -- Explore All Countries Our Customers Come From
 SELECT DISTINCT country
@@ -20,7 +24,9 @@ SELECT DISTINCT
 FROM gold.dim_products
 ORDER BY 1,2,3
 
+-----------------------------------------------------------
 -- DATE EXPLORATION
+-----------------------------------------------------------
 
 -- Find the date of first and last orders
 
@@ -43,7 +49,9 @@ SELECT
 	DATEDIFF(YEAR, MAX(birthdate),GETDATE()) youngest_age
 FROM gold.dim_customers
 
+-----------------------------------------------------------
 -- MEASURE EXPLORATION
+-----------------------------------------------------------
 
 -- Find the total sales
 SELECT SUM(sales) Total_Sales
@@ -95,7 +103,9 @@ UNION ALL
 SELECT 'Customers Placed Orders',COUNT(DISTINCT customer_key) 
 FROM gold.fact_sales
 
+-----------------------------------------------------------
 -- MAGINITUDE
+-----------------------------------------------------------
 
 -- Find total customers by countries
 SELECT 
@@ -168,7 +178,9 @@ ON s.customer_key = c.customer_key
 GROUP BY c.country , p.product_name
 ORDER BY c.country , p.product_name , total_items_sold
 
+-----------------------------------------------------------
 -- RANKING ANALYSIS
+-----------------------------------------------------------
 
 -- Which 5 products generate the highest revenue
 SELECT TOP 5
