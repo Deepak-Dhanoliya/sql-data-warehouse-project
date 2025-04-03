@@ -348,7 +348,8 @@ CREATE VIEW gold.report_products AS
 			SUM(quantity) AS total_quantity,
 			COUNT(DISTINCT customer_key) AS total_customers,
 			DATEDIFF(MONTH , MIN(order_date), MAX(order_date)) AS lifespan,
-			MAX(order_date) AS last_order_date
+			MAX(order_date) AS last_order_date,
+			ROUND(AVG(CAST(sales AS FLOAT) / NULLIF(quantity,0)),1) AS avg_selling_price
 		FROM base_query
 		GROUP BY 
 			product_key,
@@ -374,6 +375,7 @@ CREATE VIEW gold.report_products AS
 			WHEN total_sales < 50000 THEN 'Mid-Range'
 			ELSE 'High-Performance'
 		END AS performance,
+		avg_selling_price,
 		total_quantity,
 		total_customers,
 		lifespan,
